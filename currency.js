@@ -1,10 +1,10 @@
 /*
-    currency  - Recieve a number/string and return something like this $1,000.00
+    Currency  - Recieve a number/string and return something like this $1,000.00
               - Recieve the cuantity of decimals
               - if it is empty will be without decimals
 */
 
-function currency( number, decimals = -1 ){
+function Currency( number, decimals ){
     let result      = '';
     let points      =  0;
     let dollar      =  0;
@@ -12,8 +12,7 @@ function currency( number, decimals = -1 ){
     let decimal     = '';
     
     if( typeof number != "string" && typeof number != "number" ) return 'Check your input';
-    let numberToConvert = number.toString();
-    numberToConvert     = numberToConvert.split('');
+    let numberToConvert = number.toString().split('');
     if( !numberToConvert.includes('.') ){ numberToConvert.push('.') }
     numberToConvert.forEach( (number, index) => {
       if( number == '.' ){ points++; numberToConvert.splice( index,1 ); decimal = index; for( let i = index; i < numberToConvert.length ; i++ ){ decimales += numberToConvert[ i ]; }}
@@ -50,12 +49,18 @@ function currency( number, decimals = -1 ){
       return result
     }else{
       numberToConvert.unshift('$');
+      if( numberToConvert[ numberToConvert.length -1 ] == '.' ){ numberToConvert.splice(numberToConvert.length,1 ); console.log( 'XD ',numberToConvert )}
       numberToConvert = numberToConvert.join('');
-      if( decimals > 0 ){
-       numberToConvert = numberToConvert + '.' + decimales
+      if( decimals ){
+        decimales = '0.'+ decimales
+        decimales = +decimales
+        decimales = decimales.toFixed( decimals )
+        decimales = decimales.split('.')
+        decimales = decimales[1];
+        numberToConvert += '.' + decimales
       }else{
-        if( number == -1 ){
-          numberToConvert = numberToConvert + '.' + decimales
+        if( decimals != undefined ){
+          numberToConvert = numberToConvert + '.' + decimales;
         }
       }
       result = numberToConvert;
@@ -63,4 +68,4 @@ function currency( number, decimals = -1 ){
     }
 }
 
-module.exports = currency; 
+module.exports = Currency; 

@@ -1,4 +1,4 @@
-const sumAllNumbers = require('./sumAllNumbers');
+const Sum = require('./Sum');
 const arrays = [
     {
         array: [ 1,2,3 ],
@@ -16,6 +16,6 @@ const arrays = [
 
 arrays.forEach( array => {
     test('Regresa la sumatoria de los elementos de un arreglo', () => {
-        expect( sumAllNumbers(array.array)).toBe( array.total );
+        expect( Sum(array.array)).toBe( array.total );
     });
 })

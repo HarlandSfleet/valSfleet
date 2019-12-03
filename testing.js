@@ -11,7 +11,7 @@ const b     = currency(true)
 const d     = currency('asssd')
 const f     = currency('$100.0')
 const a     = currency(1233)
-const x     = currency('$1233.23',1)
+const x     = currency('$1233.232323',3)
 // console.log( '-->', test );
 // console.log( test1 )
 // console.log( test2 )
